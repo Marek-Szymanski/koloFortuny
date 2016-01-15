@@ -43,12 +43,14 @@ public class RMI_Hello_Implementation extends UnicastRemoteObject implements RMI
 
     @Override
     public void nowaGra() {
-        gra = new Gra();
+        if(gra == null)
+            gra = new Gra();
+        
     }
 
-    @Override
+   // @Override
     public Gra czyZaczacGre() {
-        if(gra.getGracze().size() == 3)
+        if(gra.getGracze().size() == 1)
             return gra;
         else
             return null;

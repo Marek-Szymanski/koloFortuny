@@ -26,7 +26,7 @@ public class HelloServer {
             RMI_Hello_Implementation rmiHello = new RMI_Hello_Implementation();
             Naming.rebind("//127.0.0.1:6999/RMIExample", rmiHello);
             System.out.println("Server is ready");
-            rmiHello.nowaGra();
+            
             
         }
         catch (Exception e)

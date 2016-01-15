@@ -15,11 +15,13 @@ import server.klasy.Gracz;
  * @author marekszymanski
  */
 public interface RMI_Hello_Interface extends Remote{
+    
+    
     public String sayHello(String name) throws RemoteException;
     //serwer tworzy u siebie Gre
-    public void nowaGra();
+    public void nowaGra() throws RemoteException;
     //klient chce dodać siebie do Gry
-    public boolean dodajOsobeDoGry(Gracz gracz);
+    public boolean dodajOsobeDoGry(Gracz gracz) throws RemoteException;
     //klient pyta czy są wszyscy gracze, w odpowiedzi dostaje null gdny nie lub Gre jeśli wszyscy już są
-    public Gra czyZaczacGre();
+    public Gra czyZaczacGre() throws RemoteException;
 }
