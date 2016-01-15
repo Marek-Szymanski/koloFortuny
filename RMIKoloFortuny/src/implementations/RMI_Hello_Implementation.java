@@ -8,6 +8,8 @@ package implementations;
 import interfaces.RMI_Hello_Interface;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import server.klasy.Gra;
+import server.klasy.Gracz;
 
 /**
  *
@@ -15,6 +17,8 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class RMI_Hello_Implementation extends UnicastRemoteObject implements RMI_Hello_Interface
 {
+    Gra gra;
+    
     public RMI_Hello_Implementation() throws RemoteException
     {
         
@@ -24,6 +28,30 @@ public class RMI_Hello_Implementation extends UnicastRemoteObject implements RMI
     public String sayHello(String name) throws RemoteException {
         String returnStatement = "Hello "+name+":)";
         return returnStatement;
+    }
+
+    @Override
+    public boolean dodajOsobeDoGry(Gracz gracz) {
+        if(gra.getGracze().size()<3)
+        {
+            gra.getGracze().add(gracz);
+            return true;
+        }
+        else
+            return false;
+    }
+
+    @Override
+    public void nowaGra() {
+        gra = new Gra();
+    }
+
+    @Override
+    public Gra czyZaczacGre() {
+        if(gra.getGracze().size() == 3)
+            return gra;
+        else
+            return null;
     }
     
 }

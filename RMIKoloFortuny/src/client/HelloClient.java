@@ -10,6 +10,8 @@ import interfaces.RMI_Hello_Interface;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import server.klasy.Gra;
+import server.klasy.Gracz;
 
 /**
  *
@@ -24,9 +26,23 @@ public class HelloClient {
             Registry reg = LocateRegistry.getRegistry("localhost", 6999);
             rmiHello = (RMI_Hello_Interface)Naming.lookup("//127.0.0.1:6999/RMIExample");
             System.out.println("Nawiązuję połączenie z serwerem");
-            String imie = "Marek";
-            String wynik = rmiHello.sayHello(imie);
-            System.out.println(wynik);
+            
+            //na teraz bez menu zaczęcia gry
+            Gra gra = null;
+            Gracz gracz = new Gracz("Gracz ");
+            //stara się o dołączenie do gry
+            boolean boolTemp = rmiHello.dodajOsobeDoGry(gracz);
+            if(boolTemp)
+                System.out.println("Udało się");
+            else
+                System.out.println("Wszystkie miejsca są zajęte");
+            //czekam czy zebrali się szyscy gracze
+            while(gra == null)
+            {
+                gra = rmiHello.czyZaczacGre();
+                Thread.sleep(1000);
+            }
+            //zacznij GUI Gry
         }
         catch (Exception e) 
         {

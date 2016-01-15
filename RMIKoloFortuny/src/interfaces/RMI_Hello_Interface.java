@@ -7,6 +7,8 @@ package interfaces;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import server.klasy.Gra;
+import server.klasy.Gracz;
 
 /**
  *
@@ -14,4 +16,10 @@ import java.rmi.RemoteException;
  */
 public interface RMI_Hello_Interface extends Remote{
     public String sayHello(String name) throws RemoteException;
+    //serwer tworzy u siebie Gre
+    public void nowaGra();
+    //klient chce dodać siebie do Gry
+    public boolean dodajOsobeDoGry(Gracz gracz);
+    //klient pyta czy są wszyscy gracze, w odpowiedzi dostaje null gdny nie lub Gre jeśli wszyscy już są
+    public Gra czyZaczacGre();
 }
