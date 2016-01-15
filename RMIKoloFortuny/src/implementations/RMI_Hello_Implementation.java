@@ -50,7 +50,7 @@ public class RMI_Hello_Implementation extends UnicastRemoteObject implements RMI
 
    // @Override
     public Gra czyZaczacGre() {
-        if(gra.getGracze().size() == 1)
+        if(gra.getGracze().size() == 3)
             return gra;
         else
             return null;

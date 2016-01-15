@@ -46,6 +46,7 @@ public class HelloClient {
             }
             System.out.println("START");
             //zacznij GUI Gry
+            GuiGra guiGra = new GuiGra();
         }
         catch (Exception e) 
         {
