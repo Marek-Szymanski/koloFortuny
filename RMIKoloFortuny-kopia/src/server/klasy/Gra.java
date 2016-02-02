@@ -22,6 +22,7 @@ public class Gra implements Serializable
     String odgadywaneElementyHasla;
     Gracz czyjaTura;
     int wylosowanaKwotaDoWygrania;
+    String kupioneLitery="";
 
     public Gra() 
     {
@@ -95,14 +96,35 @@ public class Gra implements Serializable
         this.wylosowanaKwotaDoWygrania = wylosowanaKwotaDoWygrania;
     }
 
+    public String getKupioneLitery() {
+        return kupioneLitery;
+    }
+
+    public void setKupioneLitery(String kupioneLitery) {
+        this.kupioneLitery = kupioneLitery;
+    }
+
     private void init()
     {
         gracze = new ArrayList<>();
         literyA = new ArrayList<>();
         literyB  = new ArrayList<>();
-        haslo = "Ala ma kota";
+        haslo = "ALA MA KOTA";
+        odgadywaneElementyHasla = haslo;
+        
         for(int i=0; i<haslo.length(); i++)
-            odgadywaneElementyHasla += "_";
+        {
+            if(odgadywaneElementyHasla.charAt(i) != ' ')
+            {
+                StringBuilder sb = new StringBuilder(odgadywaneElementyHasla);
+                sb.setCharAt(i, '?');
+                odgadywaneElementyHasla = sb.toString();
+            }
+            
+                
+        }
+            
+        System.out.println(odgadywaneElementyHasla);
         wylosowanaKwotaDoWygrania = 0;
         
     }
