@@ -32,21 +32,22 @@ public class HelloClient {
             Gra gra = null;
             Gracz gracz = new Gracz("Gracz ");
             //stara się o dołączenie do gry
-            boolean boolTemp = rmiHello.dodajOsobeDoGry(gracz);
-            if(boolTemp)
-                System.out.println("Udało się");
-            else
-                System.out.println("Wszystkie miejsca są zajęte");
-            //czekam czy zebrali się szyscy gracze
-            while(gra == null)
+            gracz = rmiHello.dodajOsobeDoGry(gracz);
+            if(gracz!=null)
             {
-                System.out.println("Czy mogę zagrać?");
-                gra = rmiHello.czyZaczacGre();
-                Thread.sleep(1000);
+                System.out.println("Sukces");
+            
+                //czekam czy zebrali się szyscy gracze
+                while(gra == null)
+                {
+                    System.out.println("Czy mogę zagrać?");
+                    gra = rmiHello.czyZaczacGre();
+                    Thread.sleep(1000);
+                }
+                System.out.println("START");
+                //zacznij GUI Gry
+                GuiGra guiGra = new GuiGra(gra, gracz);
             }
-            System.out.println("START");
-            //zacznij GUI Gry
-            GuiGra guiGra = new GuiGra(gra, gracz);
         }
         catch (Exception e) 
         {

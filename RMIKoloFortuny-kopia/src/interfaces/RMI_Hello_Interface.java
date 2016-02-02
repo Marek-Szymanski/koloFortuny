@@ -21,7 +21,7 @@ public interface RMI_Hello_Interface extends Remote{
     //serwer tworzy u siebie Gre
     public void nowaGra() throws RemoteException;
     //klient chce dodać siebie do Gry
-    public boolean dodajOsobeDoGry(Gracz gracz) throws RemoteException;
+    public Gracz dodajOsobeDoGry(Gracz gracz) throws RemoteException;
     //klient pyta czy są wszyscy gracze, w odpowiedzi dostaje null gdny nie lub Gre jeśli wszyscy już są
     public Gra czyZaczacGre() throws RemoteException;
 }

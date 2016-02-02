@@ -48,21 +48,6 @@ public class Gra implements Serializable
         this.gracze = gracze;
     }
 
-    public List<String> getLiteryA() {
-        return literyA;
-    }
-
-    public void setLiteryA(List<String> literyA) {
-        this.literyA = literyA;
-    }
-
-    public List<String> getLiteryB() {
-        return literyB;
-    }
-
-    public void setLiteryB(List<String> literyB) {
-        this.literyB = literyB;
-    }
 
     public String getHaslo() {
         return haslo;
@@ -112,6 +97,7 @@ public class Gra implements Serializable
         haslo = "ALA MA KOTA";
         odgadywaneElementyHasla = haslo;
         
+        //"Szyfrowanie hasła"
         for(int i=0; i<haslo.length(); i++)
         {
             if(odgadywaneElementyHasla.charAt(i) != ' ')

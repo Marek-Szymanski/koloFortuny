@@ -31,14 +31,17 @@ public class RMI_Hello_Implementation extends UnicastRemoteObject implements RMI
     }
 
     @Override
-    public boolean dodajOsobeDoGry(Gracz gracz) {
+    public Gracz dodajOsobeDoGry(Gracz gracz) {
         if(gra.getGracze().size()<3)
         {
+            System.out.println("NAZWA GRACZ: "+gracz.getNazwa());
+            gracz.setNazwa(gracz.getNazwa()+Integer.toString(gra.getGracze().size()));
             gra.getGracze().add(gracz);
-            return true;
+            System.out.println("NAZWA GRACZ: "+gracz.getNazwa());
+            return gracz;
         }
         else
-            return false;
+            return null;
     }
 
     @Override

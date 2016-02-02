@@ -55,14 +55,11 @@ public class GuiGra extends javax.swing.JFrame {
         
     }
     
-    public void createTable()
-    {
-        
-    }
-    
+    //uaktualnia wyświetlane wartości GUI
     public void uaktualnijStanGry()
     {
         jLabel2.setText(gracz.getNazwa());
+        //System.out.println("TEST "+jLabel2.getText());
         jLabel6.setText(Integer.toString(gra.getWylosowanaKwotaDoWygrania()));
         jLabel8.setText(gra.getOdgadywaneElementyHasla());
         jLabel5.setText(gra.getKupioneLitery());
@@ -179,11 +176,11 @@ public class GuiGra extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(26, 26, 26))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -211,7 +208,7 @@ public class GuiGra extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 217, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -243,7 +240,7 @@ public class GuiGra extends javax.swing.JFrame {
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2))))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -278,7 +275,7 @@ public class GuiGra extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
+//wyświetla animację kręcenia kołem i losuje wygraną
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Animacja pro = new Animacja();
         Random generator = new Random();
@@ -289,7 +286,7 @@ public class GuiGra extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton3ActionPerformed
-
+//pozwala wybrać literę z alfabetu (sprawdza czy była wybrana, czy jest w haśle itp)
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         System.out.println(jComboBox1.getSelectedItem());
         String haslo = gra.getHaslo();
@@ -305,9 +302,9 @@ public class GuiGra extends javax.swing.JFrame {
                     StringBuilder sb = new StringBuilder(gra.getOdgadywaneElementyHasla());
                     sb.setCharAt(i, wybranyChar);
                     gra.setOdgadywaneElementyHasla(sb.toString());
-                    if(wybranaLitera.equals("A"))
+                    if(wybranaLitera.equals("A"))//należy dodać lub EYUIOó
                     {
-                        gra.getCzyjaTura().setStanKonta(gra.getCzyjaTura().getStanKonta()-500);
+                        gra.getCzyjaTura().setStanKonta(gra.getCzyjaTura().getStanKonta()-200);
             
                     }
                     else
@@ -315,13 +312,17 @@ public class GuiGra extends javax.swing.JFrame {
                         gra.getCzyjaTura().setStanKonta(gra.getCzyjaTura().getStanKonta()+gra.getWylosowanaKwotaDoWygrania());
             
                     }
+                    if(gra.getHaslo().equals(gra.getOdgadywaneElementyHasla()))
+                    {
+                        //koniec gry
+                    }
                 }
             }
             
         }
         else
         {
-            System.out.println("NIE");
+            //litera nie była w haśle, zmień turę
         }
         if(gra.getKupioneLitery().contains(wybranaLitera) == false)
         {
@@ -332,7 +333,7 @@ public class GuiGra extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jComboBox1ActionPerformed
-
+//pole w którym podaję hasło, jeśli tak koniec gry
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         if(jTextField1.getText().toUpperCase().equals(gra.getHaslo()))
         {
@@ -340,9 +341,11 @@ public class GuiGra extends javax.swing.JFrame {
             gra.setOdgadywaneElementyHasla(gra.getHaslo());
             gra.getCzyjaTura().setStanKonta(gra.getCzyjaTura().getStanKonta()+gra.getWylosowanaKwotaDoWygrania());
             uaktualnijStanGry();
+            //koniec gry
         }
         else
             System.out.println("NIE");
+            //wiadomość "ZŁĄ ODPOWIEDŹ"
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     
