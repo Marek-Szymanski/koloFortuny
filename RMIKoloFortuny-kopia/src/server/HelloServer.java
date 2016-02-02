@@ -21,10 +21,10 @@ public class HelloServer {
     {
         try
         {
-            LocateRegistry.createRegistry(6999);
+            LocateRegistry.createRegistry(6998);
             Registry reg = LocateRegistry.getRegistry();
             RMI_Hello_Implementation rmiHello = new RMI_Hello_Implementation();
-            Naming.rebind("//127.0.0.1:6999/RMIExample", rmiHello);
+            Naming.rebind("//127.0.0.1:6998/RMIExample", rmiHello);
             System.out.println("Server is ready");
             
             

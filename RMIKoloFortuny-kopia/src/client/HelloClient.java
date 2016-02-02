@@ -23,8 +23,8 @@ public class HelloClient {
         RMI_Hello_Interface rmiHello = null;
         try
         {
-            Registry reg = LocateRegistry.getRegistry("localhost", 6999);
-            rmiHello = (RMI_Hello_Interface)Naming.lookup("//127.0.0.1:6999/RMIExample");
+            Registry reg = LocateRegistry.getRegistry("localhost", 6998);
+            rmiHello = (RMI_Hello_Interface)Naming.lookup("//127.0.0.1:6998/RMIExample");
             System.out.println("Nawiązuję połączenie z serwerem");
             
             //na teraz bez menu zaczęcia gry
@@ -37,7 +37,7 @@ public class HelloClient {
             {
                 System.out.println("Sukces");
             
-                //czekam czy zebrali się szyscy gracze
+                //czekam czy zebrali się wszyscy gracze
                 while(gra == null)
                 {
                     System.out.println("Czy mogę zagrać?");

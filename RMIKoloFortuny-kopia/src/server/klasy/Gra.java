@@ -22,24 +22,15 @@ public class Gra implements Serializable
     String odgadywaneElementyHasla;
     Gracz czyjaTura;
     int wylosowanaKwotaDoWygrania;
-    String kupioneLitery="";
-
+    String kupioneLitery = "";
+    int whosNext = 0;
+    Gracz winner;
+    
     public Gra() 
     {
         init();
-    }
+    }   
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     public List<Gracz> getGracze() {
         return gracze;
     }
@@ -47,7 +38,6 @@ public class Gra implements Serializable
     public void setGracze(List<Gracz> gracze) {
         this.gracze = gracze;
     }
-
 
     public String getHaslo() {
         return haslo;
@@ -72,7 +62,7 @@ public class Gra implements Serializable
     public void setCzyjaTura(Gracz czyjaTura) {
         this.czyjaTura = czyjaTura;
     }
-
+   
     public int getWylosowanaKwotaDoWygrania() {
         return wylosowanaKwotaDoWygrania;
     }
@@ -88,15 +78,40 @@ public class Gra implements Serializable
     public void setKupioneLitery(String kupioneLitery) {
         this.kupioneLitery = kupioneLitery;
     }
+ 
+    public Gracz getNextGracz(){
+        whosNext++;
+        if(whosNext == gracze.size()){
+            whosNext = 0;
+        }
+        czyjaTura = gracze.get(whosNext);
+        return gracze.get(whosNext);
+    }
 
+    public Gracz getWinner() {
+        return winner;
+    }
+
+    public void findWinner() {
+        winner = gracze.get(0);
+        int maxResult = 0;
+        for(int i = 0;i < gracze.size();i++){
+            if(maxResult < gracze.get(i).getStanKonta()){
+                maxResult = gracze.get(i).getStanKonta();
+                winner = gracze.get(i); 
+            }
+            System.out.println(winner.getNazwa() + " "  + winner.getStanKonta());
+        }
+        System.out.println("Winner is " + winner.getNazwa());
+    }
+    
     private void init()
     {
         gracze = new ArrayList<>();
         literyA = new ArrayList<>();
         literyB  = new ArrayList<>();
         haslo = "ALA MA KOTA";
-        odgadywaneElementyHasla = haslo;
-        
+        odgadywaneElementyHasla = haslo;       
         //"Szyfrowanie hasła"
         for(int i=0; i<haslo.length(); i++)
         {
@@ -105,13 +120,9 @@ public class Gra implements Serializable
                 StringBuilder sb = new StringBuilder(odgadywaneElementyHasla);
                 sb.setCharAt(i, '?');
                 odgadywaneElementyHasla = sb.toString();
-            }
-            
-                
-        }
-            
+            }               
+        }           
         System.out.println(odgadywaneElementyHasla);
-        wylosowanaKwotaDoWygrania = 0;
-        
+        wylosowanaKwotaDoWygrania = 0;      
     }
 }

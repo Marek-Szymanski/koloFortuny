@@ -34,9 +34,9 @@ public class RMI_Hello_Implementation extends UnicastRemoteObject implements RMI
     public Gracz dodajOsobeDoGry(Gracz gracz) {
         if(gra.getGracze().size()<3)
         {
-            System.out.println("NAZWA GRACZ: "+gracz.getNazwa());
+//            System.out.println("NAZWA GRACZ: "+gracz.getNazwa());
+            gra.getGracze().add(gracz); 
             gracz.setNazwa(gracz.getNazwa()+Integer.toString(gra.getGracze().size()));
-            gra.getGracze().add(gracz);
             System.out.println("NAZWA GRACZ: "+gracz.getNazwa());
             return gracz;
         }
