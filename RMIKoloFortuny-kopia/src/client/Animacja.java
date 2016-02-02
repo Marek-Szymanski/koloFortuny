@@ -24,6 +24,7 @@ public class Animacja extends JFrame{
     int x = 0;
     //Images Path In Array
     String[] list = {
+        //ZMIENiĆ ŚCIEŻKI Z LOKALNYCH NA TAKIE KTÓRE POBIORĄ Z SYSTEMU ŚCIEŻKĘ DO RMIKołoFortuny-.kopia 
                       "/Volumes/Untitled/RMIKoloFortuny-kopia/2e14b4ec9c-gif-im/frame_0_delay-0.03s.gif",//0
                       "/Volumes/Untitled/RMIKoloFortuny-kopia/2e14b4ec9c-gif-im/frame_1_delay-0.03s.gif",//1
                       "/Volumes/Untitled/RMIKoloFortuny-kopia/2e14b4ec9c-gif-im/frame_2_delay-0.03s.gif",//2
