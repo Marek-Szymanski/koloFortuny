@@ -25,13 +25,13 @@ public class Animacja extends JFrame{
     //Images Path In Array
     String[] list = {
         //ZMIENiĆ ŚCIEŻKI Z LOKALNYCH NA TAKIE KTÓRE POBIORĄ Z SYSTEMU ŚCIEŻKĘ DO RMIKołoFortuny-.kopia 
-                      "/RMIKoloFortuny-kopia/2e14b4ec9c-gif-im/frame_0_delay-0.03s.gif",//0
-                      "/Volumes/Untitled/RMIKoloFortuny-kopia/2e14b4ec9c-gif-im/frame_1_delay-0.03s.gif",//1
-                      "/Volumes/Untitled/RMIKoloFortuny-kopia/2e14b4ec9c-gif-im/frame_2_delay-0.03s.gif",//2
-                      "/Volumes/Untitled/RMIKoloFortuny-kopia/2e14b4ec9c-gif-im/frame_3_delay-0.03s.gif",//3
-                      "/Volumes/Untitled/RMIKoloFortuny-kopia/2e14b4ec9c-gif-im/frame_4_delay-0.03s.gif",//4
-                      "/Volumes/Untitled/RMIKoloFortuny-kopia/2e14b4ec9c-gif-im/frame_5_delay-0.03s.gif",//5
-                      "/Volumes/Untitled/RMIKoloFortuny-kopia/2e14b4ec9c-gif-im/frame_6_delay-0.03s.gif"//6
+                      "./2e14b4ec9c-gif-im/frame_0_delay-0.03s.gif",//0
+                      "./2e14b4ec9c-gif-im/frame_1_delay-0.03s.gif",//1
+                      "./2e14b4ec9c-gif-im/frame_2_delay-0.03s.gif",//2
+                      "./2e14b4ec9c-gif-im/frame_3_delay-0.03s.gif",//3
+                      "./2e14b4ec9c-gif-im/frame_4_delay-0.03s.gif",//4
+                      "./2e14b4ec9c-gif-im/frame_5_delay-0.03s.gif",//5
+                      "./2e14b4ec9c-gif-im/frame_6_delay-0.03s.gif"//6
                     };
     int temp = 0;
     public Animacja(){
