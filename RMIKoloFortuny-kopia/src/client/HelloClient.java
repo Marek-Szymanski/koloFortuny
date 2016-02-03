@@ -7,6 +7,7 @@ package client;
 
 import implementations.RMI_Hello_Implementation;
 import interfaces.RMI_Hello_Interface;
+import static java.lang.Thread.sleep;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -47,6 +48,33 @@ public class HelloClient {
                 System.out.println("START");
                 //zacznij GUI Gry
                 GuiGra guiGra = new GuiGra(gra, gracz);
+                while(true)
+                {
+                    if(gra.getCzyjaTura().getNazwa().equals(gracz.getNazwa()) && guiGra.nowaTura)
+                    {
+                        System.out.println("gra gracz "+gra.getCzyjaTura().getNazwa());
+                        
+                        guiGra.nowaTura = rmiHello.setGra(gra);
+                        
+                        
+                        sleep(1000);
+                        //
+                    }
+                    else
+                    {
+                        gra = rmiHello.getGra();
+                        guiGra.gra = gra;
+                        guiGra.uaktualnijStanGry();
+                    }
+                    sleep(1000);
+                    if(gra.isKoniecGry())
+                    {
+                        guiGra.koniecGui();
+                        break;
+                    }
+                       
+                }
+                
             }
         }
         catch (Exception e) 

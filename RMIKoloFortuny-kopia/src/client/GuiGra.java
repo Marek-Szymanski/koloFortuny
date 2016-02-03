@@ -12,6 +12,8 @@ import server.klasy.Gracz;
 public class GuiGra extends javax.swing.JFrame {
     Gra gra;
     Gracz gracz;
+    boolean nowaTura = false;
+    int wygrana = 0;
     
     public GuiGra(Gra gra, Gracz gracz) {
         this.gra = gra;
@@ -28,14 +30,24 @@ public class GuiGra extends javax.swing.JFrame {
     {
         jLbl_NazwaGracza.setText(gracz.getNazwa());
 //        System.out.println("TEST "+jLbl_NazwaGracza.getText());
-        jLbl_WylosowanaKwota.setText(Integer.toString(gra.getWylosowanaKwotaDoWygrania()));
+        jLbl_WylosowanaKwota.setText(Integer.toString(wygrana));
         jLbl_Haslo.setText(gra.getOdgadywaneElementyHasla());
         jLabel5.setText(gra.getKupioneLitery());
         jLbl_KontoGracza1.setText(Integer.toString(gra.getGracze().get(0).getStanKonta()));
         jLbl_KontoGracza2.setText(Integer.toString(gra.getGracze().get(1).getStanKonta()));
         jLbl_KontoGracza3.setText(Integer.toString(gra.getGracze().get(2).getStanKonta()));
-//        repaint();
-//        validate();
+        if(gra.getCzyjaTura().getNazwa().equals(gracz.getNazwa()))
+        {
+            jComboBox_Litery.setEnabled(true);
+            jTextField1.setEnabled(true);
+            jBtn_KrecKolem.setEnabled(true);
+        }
+        else
+        {
+            jComboBox_Litery.setEnabled(false);
+            jTextField1.setEnabled(false);
+            jBtn_KrecKolem.setEnabled(false);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -228,7 +240,7 @@ public class GuiGra extends javax.swing.JFrame {
         int temp = new Random().nextInt(10) * 100;
 //        gracz.setStanKonta(temp);
         System.out.println(gracz.getStanKonta());
-        gra.setWylosowanaKwotaDoWygrania(temp);
+        wygrana = temp;
         uaktualnijStanGry();        
     }//GEN-LAST:event_jBtn_KrecKolemActionPerformed
 //pozwala wybrać literę z alfabetu (sprawdza czy była wybrana, czy jest w haśle itp)
@@ -247,23 +259,10 @@ public class GuiGra extends javax.swing.JFrame {
                    
                     //koniec gry
                     if(gra.getHaslo().equals(gra.getOdgadywaneElementyHasla())){
-                        gra.findWinner();
-                        java.awt.EventQueue.invokeLater(new Runnable() {
-                            public void run() {
-                                KoniecGry dialog = new KoniecGry(new javax.swing.JFrame(), true, gra);
-                                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                                    @Override
-                                    public void windowClosing(java.awt.event.WindowEvent e) {
-                                        System.exit(0);
-                                    }
-                                });
-                                dialog.setVisible(true);
-                            }
-                        });
-                        return;
+                        gra.setKoniecGry(true);
                     }
-                    gra.getCzyjaTura().setStanKonta(gra.getCzyjaTura().getStanKonta() + gra.getWylosowanaKwotaDoWygrania());
-//                    
+                    gra.getCzyjaTura().setStanKonta(gra.getCzyjaTura().getStanKonta() + wygrana);
+                    
 //                    if(wybranaLitera.equals("A")){//należy dodać lub EYUIOó
 //                        gra.getCzyjaTura().setStanKonta(gra.getCzyjaTura().getStanKonta() + gra.getWylosowanaKwotaDoWygrania());
 //                        
@@ -273,10 +272,11 @@ public class GuiGra extends javax.swing.JFrame {
 ////                        gra.getNextGracz();
 //                    }                    
                 }
-            }          
+            }       
+            nowaTura = true;
         }
         else{
-            gra.getNextGracz();//litera nie była w haśle, zmień turę
+            nowaTura = true;
         }
         if(gra.getKupioneLitery().contains(wybranaLitera) == false){
             wybranaLitera +=" ";
@@ -294,25 +294,32 @@ public class GuiGra extends javax.swing.JFrame {
             gra.getCzyjaTura().setStanKonta(gra.getCzyjaTura().getStanKonta()+gra.getWylosowanaKwotaDoWygrania());
             uaktualnijStanGry();
             //koniec gry
-            gra.findWinner();
-                       java.awt.EventQueue.invokeLater(new Runnable() {
-                           public void run() {
-                               KoniecGry dialog = new KoniecGry(new javax.swing.JFrame(), true, gra);
-                               dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                                   @Override
-                                   public void windowClosing(java.awt.event.WindowEvent e) {
-                                       System.exit(0);
-                                   }
-                               });
-                               dialog.setVisible(true);
-                           }
-                       });
+            gra.setKoniecGry(true);
         }
         else
             System.out.println("NIE");
             //wiadomość "ZŁĄ ODPOWIEDŹ"
+        nowaTura = true;
     }//GEN-LAST:event_jTextField1ActionPerformed
    
+    public void koniecGui()
+    {
+        gra.findWinner();
+                        java.awt.EventQueue.invokeLater(new Runnable() {
+                            public void run() {
+                                KoniecGry dialog = new KoniecGry(new javax.swing.JFrame(), true, gra);
+                                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                                    @Override
+                                    public void windowClosing(java.awt.event.WindowEvent e) {
+                                        System.exit(0);
+                                    }
+                                });
+                                dialog.setVisible(true);
+                            }
+                        });
+                      
+    }
+    
     /**
      * @param args the command line arguments
      */

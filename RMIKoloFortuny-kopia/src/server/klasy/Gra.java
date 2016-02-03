@@ -25,6 +25,8 @@ public class Gra implements Serializable
     String kupioneLitery = "";
     int whosNext = 0;
     Gracz winner;
+    boolean koniecGry = false;
+    
     
     public Gra() 
     {
@@ -53,6 +55,14 @@ public class Gra implements Serializable
 
     public void setOdgadywaneElementyHasla(String odgadywaneElementyHasla) {
         this.odgadywaneElementyHasla = odgadywaneElementyHasla;
+    }
+
+    public boolean isKoniecGry() {
+        return koniecGry;
+    }
+
+    public void setKoniecGry(boolean koniecGry) {
+        this.koniecGry = koniecGry;
     }
 
     public Gracz getCzyjaTura() {

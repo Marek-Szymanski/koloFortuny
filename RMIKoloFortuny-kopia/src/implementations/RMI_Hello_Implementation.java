@@ -8,6 +8,8 @@ package implementations;
 import interfaces.RMI_Hello_Interface;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import server.klasy.Gra;
 import server.klasy.Gracz;
 
@@ -61,5 +63,28 @@ public class RMI_Hello_Implementation extends UnicastRemoteObject implements RMI
         else
             return null;
     }
+
+    @Override
+    public Gra getGra() throws RemoteException {
+        return gra;
+    }
+
+    @Override
+    public boolean setGra(Gra gra) throws RemoteException 
+    {
+        System.out.println("Ustawiam grę");
+        this.gra = gra;
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(RMI_Hello_Implementation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        Gracz gracz = gra.getNextGracz();
+        System.out.println("Zmeniam gracza na "+gracz.getNazwa());
+        gra.setCzyjaTura(gracz);
+        return false;
+    }
+    
     
 }

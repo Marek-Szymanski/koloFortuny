@@ -24,4 +24,6 @@ public interface RMI_Hello_Interface extends Remote{
     public Gracz dodajOsobeDoGry(Gracz gracz) throws RemoteException;
     //klient pyta czy są wszyscy gracze, w odpowiedzi dostaje null gdny nie lub Gre jeśli wszyscy już są
     public Gra czyZaczacGre() throws RemoteException;
+    public Gra getGra() throws RemoteException;
+    public boolean setGra(Gra gra) throws RemoteException;
 }
