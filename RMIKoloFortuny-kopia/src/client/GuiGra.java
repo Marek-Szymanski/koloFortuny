@@ -260,17 +260,11 @@ public class GuiGra extends javax.swing.JFrame {
                     //koniec gry
                     if(gra.getHaslo().equals(gra.getOdgadywaneElementyHasla())){
                         gra.setKoniecGry(true);
-                    }
-                    gra.getCzyjaTura().setStanKonta(gra.getCzyjaTura().getStanKonta() + wygrana);
+                    }if(gra.getKupioneLitery().contains(wybranaLitera))
+                        gra.getCzyjaTura().setStanKonta(gra.getCzyjaTura().getStanKonta());
+                    else
+                        gra.getCzyjaTura().setStanKonta(gra.getCzyjaTura().getStanKonta() + wygrana);
                     
-//                    if(wybranaLitera.equals("A")){//należy dodać lub EYUIOó
-//                        gra.getCzyjaTura().setStanKonta(gra.getCzyjaTura().getStanKonta() + gra.getWylosowanaKwotaDoWygrania());
-//                        
-//                    }
-//                    else{
-//                        gra.getCzyjaTura().setStanKonta(gra.getCzyjaTura().getStanKonta() + gra.getWylosowanaKwotaDoWygrania());          
-////                        gra.getNextGracz();
-//                    }                    
                 }
             }       
             nowaTura = true;

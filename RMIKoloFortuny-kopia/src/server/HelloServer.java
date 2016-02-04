@@ -19,6 +19,9 @@ import server.klasy.Gra;
 public class HelloServer {
     public static void main(String[] argv)
     {
+        if (System.getSecurityManager() == null){
+           System.setSecurityManager(new SecurityManager());
+        }
         try
         {
             LocateRegistry.createRegistry(6998);

@@ -1,4 +1,4 @@
 grant {
     // zezwalamy na wszystko
     permission java.security.AllPermission;
-}
+};
